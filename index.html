@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaGuard - Filtro y Sensor de Agua Inteligente</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#0ea5e9', // Light blue ODS 6 style
+                        secondary: '#0284c7',
+                        dark: '#0f172a',
+                        light: '#f0f9ff'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom styles for smooth reveals and subtle background animations */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .hero-pattern {
+            background-color: #f0f9ff;
+            background-image: radial-gradient(#0ea5e9 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 antialiased bg-slate-50 selection:bg-primary selection:text-white">
+
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer">
+                    <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg shadow-primary/30">
+                        <i class="fa-solid fa-droplet text-xl"></i>
+                    </div>
+                    <span class="font-bold text-2xl text-dark tracking-tight">AquaGuard<span class="text-primary">.</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#problema" class="text-gray-600 hover:text-primary transition-colors font-medium">El Problema</a>
+                    <a href="#solucion" class="text-gray-600 hover:text-primary transition-colors font-medium">Solución</a>
+                    <a href="#ods" class="text-gray-600 hover:text-primary transition-colors font-medium">Impacto ODS</a>
+                    <a href="#negocio" class="text-gray-600 hover:text-primary transition-colors font-medium">Modelo de Negocio</a>
+                    <a href="#equipo" class="text-gray-600 hover:text-primary transition-colors font-medium">Equipo</a>
+                </div>
+                <div class="hidden md:flex">
+                    <a href="#contacto" class="bg-primary hover:bg-secondary text-white px-6 py-2.5 rounded-full font-semibold transition-all shadow-lg shadow-primary/30 hover:shadow-primary/50 transform hover:-translate-y-0.5">
+                        Solicitar Diagnóstico
+                    </a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button class="text-gray-600 hover:text-primary focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden hero-pattern">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-4xl mx-auto">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 text-secondary font-semibold text-sm mb-6 border border-blue-200">
+                    <i class="fa-solid fa-leaf"></i> Tecnología para un futuro sostenible
+                </div>
+                <h1 class="text-5xl md:text-6xl font-extrabold text-dark mb-6 leading-tight">
+                    Agua Limpia y Segura en tu Hogar, <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">Monitoreada en Tiempo Real</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-10 leading-relaxed max-w-2xl mx-auto">
+                    Transformamos el agua de la red pública (SIAPA) en agua 100% segura. Un ecosistema de filtración avanzada y sensores IoT que te alerta sobre la calidad del agua en tu celular.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#solucion" class="bg-dark hover:bg-gray-800 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all shadow-xl hover:shadow-2xl">
+                        Descubre cómo funciona
+                    </a>
+                    <a href="#negocio" class="bg-white hover:bg-gray-50 text-dark border-2 border-gray-200 px-8 py-4 rounded-full font-semibold text-lg transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-chart-line"></i> Ver Plan de Negocio
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Abstract water shapes background -->
+        <div class="absolute top-0 right-0 -z-10 opacity-20">
+            <svg width="600" height="600" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#0ea5e9" d="M44.7,-76.4C58.8,-69.2,71.8,-59.1,79.6,-46.8C87.4,-34.5,90,-20,89.1,-6.1C88.1,7.8,83.5,21.1,75.4,32.1C67.3,43.1,55.7,51.8,43.2,59.5C30.7,67.2,17.3,73.9,2.8,69.1C-11.7,64.3,-27.1,48,-40.4,36.5C-53.7,25,-64.9,18.3,-72.4,7.4C-79.9,-3.5,-83.7,-18.6,-78.9,-30.4C-74.1,-42.2,-60.7,-50.7,-47.5,-58.5C-34.3,-66.3,-21.3,-73.4,-6.1,-64.5C9.1,-55.6,28.3,-30.7,44.7,-76.4Z" transform="translate(100 100)" />
+            </svg>
+        </div>
+    </section>
+
+    <section id="problema" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-sm font-bold text-primary tracking-widest uppercase mb-3">El Problema</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold text-dark mb-6">Incertidumbre en la calidad del agua de la ZMG</h3>
+                    <p class="text-gray-600 mb-6 text-lg leading-relaxed">
+                        En la Zona Metropolitana de Guadalajara (ZMG), el suministro de agua por parte del <strong>SIAPA</strong> presenta fluctuaciones constantes en su calidad. Los ciudadanos reciben agua con turbiedad, sedimentos y posibles contaminantes sin previo aviso.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-4">
+                            <div class="mt-1 bg-red-100 text-red-600 p-2 rounded-lg"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                            <div>
+                                <h4 class="font-bold text-dark">Riesgo a la Salud</h4>
+                                <p class="text-gray-600">Uso de agua no potable para actividades domésticas críticas por falta de información.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="mt-1 bg-orange-100 text-orange-600 p-2 rounded-lg"><i class="fa-solid fa-eye-slash"></i></div>
+                            <div>
+                                <h4 class="font-bold text-dark">Falta de Visibilidad</h4>
+                                <p class="text-gray-600">Las familias no saben en tiempo real qué tipo de agua está entrando a sus cisternas o tinacos.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="mt-1 bg-gray-100 text-gray-600 p-2 rounded-lg"><i class="fa-solid fa-scale-balanced"></i></div>
+                            <div>
+                                <h4 class="font-bold text-dark">Vulnerabilidad Jurídica</h4>
+                                <p class="text-gray-600">Ausencia de evidencia medible para exigir el cumplimiento del derecho humano al agua de calidad.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="relative">
+                    <div class="absolute inset-0 bg-gradient-to-r from-blue-100 to-transparent rounded-3xl transform rotate-3 scale-105 -z-10"></div>
+                    <img src="https://placehold.co/600x400/0f172a/ffffff?text=Agua+Turbia+vs+Agua+Limpia" alt="Problema del Agua" class="rounded-3xl shadow-2xl w-full object-cover">
+                    <!-- Alert Mockup overlay -->
+                    <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-4 animate-bounce border border-red-100">
+                        <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-red-500 text-2xl">
+                            <i class="fa-solid fa-droplet-slash"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 font-bold uppercase">Alerta de Sensor</p>
+                            <p class="text-sm font-bold text-red-600">¡Agua NO Segura Detectada!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="solucion" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-sm font-bold text-primary tracking-widest uppercase mb-3">La Solución Integral</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-dark mb-4">Ecosistema de Filtración Inteligente</h3>
+                <p class="text-gray-600 text-lg">Unimos la ingeniería de filtración tradicional con tecnología IoT para garantizar tu tranquilidad y salud.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Step 1: Input -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 relative group hover:-translate-y-2 transition-all duration-300">
+                    <div class="w-16 h-16 bg-blue-50 text-blue-500 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:bg-blue-500 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-faucet-drip"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-dark mb-3">1. Entrada de Red (SIAPA)</h4>
+                    <p class="text-gray-600">El sistema se conecta directamente a la toma principal de la red pública antes de llegar al tinaco o cisterna.</p>
+                </div>
+
+                <!-- Step 2: Filter -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 relative group hover:-translate-y-2 transition-all duration-300">
+                    <div class="hidden lg:block absolute top-1/2 -left-4 w-8 h-0.5 bg-blue-200"></div>
+                    <div class="w-16 h-16 bg-cyan-50 text-cyan-500 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:bg-cyan-500 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-filter"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-dark mb-3">2. Filtración Física</h4>
+                    <p class="text-gray-600">Múltiples capas de filtración retienen sedimentos, metales pesados y partículas, transformando el líquido en "Agua Limpia".</p>
+                </div>
+
+                <!-- Step 3: Sensor -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 relative group hover:-translate-y-2 transition-all duration-300">
+                    <div class="hidden lg:block absolute top-1/2 -left-4 w-8 h-0.5 bg-blue-200"></div>
+                    <div class="w-16 h-16 bg-indigo-50 text-indigo-500 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:bg-indigo-500 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-microchip"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-dark mb-3">3. Sensor IoT</h4>
+                    <p class="text-gray-600">Una placa electrónica con sensores mide turbidez, pH y sólidos disueltos (TDS) en tiempo real enviando datos a la nube.</p>
+                </div>
+
+                <!-- Step 4: App -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 relative group hover:-translate-y-2 transition-all duration-300">
+                    <div class="hidden lg:block absolute top-1/2 -left-4 w-8 h-0.5 bg-blue-200"></div>
+                    <div class="w-16 h-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-mobile-screen"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-dark mb-3">4. Plataforma y Alertas</h4>
+                    <p class="text-gray-600">Visualiza el diagnóstico. Si los niveles fallan, la app te notifica "Agua NO Segura" y te brinda evidencia para <strong>Certeza Jurídica</strong>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ods" class="py-20 bg-[#00aed9] text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/3 flex justify-center">
+                    <!-- Represents the official ODS 6 Icon -->
+                    <div class="bg-white text-[#00aed9] p-8 rounded-2xl shadow-2xl flex flex-col items-center text-center transform rotate-2 hover:rotate-0 transition-transform">
+                        <h2 class="text-5xl font-black mb-2">6</h2>
+                        <i class="fa-solid fa-hand-holding-droplet text-7xl mb-4"></i>
+                        <p class="font-bold text-xl uppercase tracking-wide">Agua Limpia y<br>Saneamiento</p>
+                    </div>
+                </div>
+                <div class="md:w-2/3">
+                    <h3 class="text-3xl md:text-5xl font-bold mb-6">Comprometidos con el ODS #6</h3>
+                    <p class="text-xl mb-6 opacity-90 leading-relaxed">
+                        Nuestro proyecto nace directamente alineado con la Agenda 2030 de la ONU. Buscamos garantizar la disponibilidad de agua y su gestión sostenible y el saneamiento para todos.
+                    </p>
+                    <ul class="space-y-3 text-lg">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check-circle"></i> Democratizar el acceso a información sobre la calidad del agua.</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check-circle"></i> Reducir la contaminación y minimizar la liberación de productos químicos.</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check-circle"></i> Apoyar la participación de las comunidades locales (ZMG) en la mejora de la gestión del agua.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="negocio" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-sm font-bold text-primary tracking-widest uppercase mb-3">Plan de Negocio</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-dark mb-4">Modelo Comercial Escalar</h3>
+                <p class="text-gray-600 text-lg">Estructura validada de creación, entrega y captura de valor para el Filtro y Sensor de Agua Potable.</p>
+            </div>
+
+            <!-- Business Model Canvas Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+                
+                <!-- Left Column (Socios & Actividades) -->
+                <div class="md:col-span-1 flex flex-col gap-4">
+                    <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex-1">
+                        <h4 class="font-bold text-dark mb-4 flex items-center gap-2"><i class="fa-solid fa-handshake text-blue-500"></i> Socios Clave</h4>
+                        <ul class="text-sm text-gray-600 space-y-2">
+                            <li>• UMAT</li>
+                            <li>• Agua y Tecnología Zapopan</li>
+                            <li>• Técnicos instaladores</li>
+                            <li>• Gobierno (Alianzas estratégicas)</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex-1">
+                        <h4 class="font-bold text-dark mb-4 flex items-center gap-2"><i class="fa-solid fa-gears text-blue-500"></i> Actividades Clave</h4>
+                        <ul class="text-sm text-gray-600 space-y-2">
+                            <li>• Proceso de filtración física</li>
+                            <li>• Diagnóstico de agua (Software/Hardware)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Center-Left (Recursos) & Center (Propuesta de Valor) -->
+                <div class="md:col-span-2 flex flex-col md:flex-row gap-4">
+                    <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm w-full md:w-1/2">
+                        <h4 class="font-bold text-dark mb-4 flex items-center gap-2"><i class="fa-solid fa-cubes text-blue-500"></i> Recursos Clave</h4>
+                        <ul class="text-sm text-gray-600 space-y-2">
+                            <li>• Empleados (Ingenieros, Soporte)</li>
+                            <li>• Equipamiento de filtración</li>
+                            <li>• Sensores IoT</li>
+                            <li>• Plataforma Web/App</li>
+                        </ul>
+                    </div>
+                    <div class="bg-blue-600 text-white p-6 rounded-xl shadow-lg w-full md:w-1/2 transform scale-105 z-10 border-4 border-blue-100 flex flex-col justify-center">
+                        <h4 class="font-bold text-xl mb-4 text-center"><i class="fa-solid fa-gem mb-2 block text-3xl"></i> Propuesta de Valor</h4>
+                        <ul class="text-sm space-y-3 font-medium">
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check mt-1 text-blue-300"></i> Productos de alta tecnología para filtrar agua domiciliaria.</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check mt-1 text-blue-300"></i> Comodidad: Venta en línea con envío e instalación incluida.</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check mt-1 text-blue-300"></i> Diagnóstico inteligente sobre la calidad del agua (App).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Right Column (Relaciones, Canales, Segmentos) -->
+                <div class="md:col-span-2 flex flex-col gap-4">
+                    <div class="flex gap-4 flex-col sm:flex-row">
+                        <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex-1">
+                            <h4 class="font-bold text-dark mb-4 flex items-center gap-2"><i class="fa-solid fa-heart text-blue-500"></i> Relación</h4>
+                            <ul class="text-sm text-gray-600 space-y-2">
+                                <li>• Redes sociales</li>
+                                <li>• Atención al cliente dedicada</li>
+                                <li>• Portal / Sitio web</li>
+                                <li>• Asesoría Cara a Cara</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex-1">
+                            <h4 class="font-bold text-dark mb-4 flex items-center gap-2"><i class="fa-solid fa-truck text-blue-500"></i> Canales (Distribución)</h4>
+                            <ul class="text-sm text-gray-600 space-y-2">
+                                <li>• Venta totalmente en línea</li>
+                                <li>• Logística de envío directo</li>
+                                <li>• Servicio de instalación a domicilio</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                        <h4 class="font-bold text-dark mb-4 flex items-center gap-2"><i class="fa-solid fa-users text-blue-500"></i> Segmentos de Mercado</h4>
+                        <ul class="text-sm text-gray-600 space-y-2 grid grid-cols-2">
+                            <li>• Particulares en la ZMG</li>
+                            <li>• Familias por zonas/colonias afectadas</li>
+                            <li>• Clientes vía subsidios</li>
+                            <li>• Participación gubernamental (Licitaciones)</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div> <!-- End Top Row Canvas -->
+
+            <!-- Bottom Row (Costos e Ingresos) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                    <h4 class="font-bold text-red-600 mb-4 flex items-center gap-2"><i class="fa-solid fa-file-invoice-dollar"></i> Estructura de Costes</h4>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Salarios y cotizaciones</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Marketing y comunicación</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Compra equipo</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Mantenimiento de hardware</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Gastos administrativos</span>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl border-2 border-green-100 shadow-sm">
+                    <h4 class="font-bold text-green-600 mb-4 flex items-center gap-2"><i class="fa-solid fa-sack-dollar"></i> Fuentes de Ingresos y Tarifas</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-3 border-b border-gray-100 pb-2">
+                            <div class="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center"><i class="fa-solid fa-cart-shopping"></i></div>
+                            <div>
+                                <p class="font-semibold text-dark">Venta de Hardware</p>
+                                <p class="text-sm text-gray-500">Filtros físicos y sensores inteligentes (pago único).</p>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center"><i class="fa-solid fa-wrench"></i></div>
+                            <div>
+                                <p class="font-semibold text-dark">Servicio de Mantenimiento</p>
+                                <p class="text-sm text-gray-500">Mantenimiento semestral recurrente <span class="text-xs font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">(Gratis el 1er año)</span></p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="equipo" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-sm font-bold text-primary tracking-widest uppercase mb-3">Equipo 1</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-dark mb-4">Mentes Detrás del Proyecto</h3>
+                <p class="text-gray-600 text-lg">Un equipo multidisciplinario comprometido con solucionar la crisis del agua a través de la tecnología y la innovación.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+                <!-- Team Member 1 -->
+                <div class="text-center group">
+                    <div class="w-24 h-24 mx-auto bg-gray-200 rounded-full mb-4 overflow-hidden shadow-md border-4 border-white group-hover:border-primary transition-colors">
+                        <img src="https://placehold.co/100x100/e2e8f0/64748b?text=JG" alt="Jacqueline" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-bold text-dark text-sm">Jacqueline Garcia Rivera</h4>
+                </div>
+                <!-- Team Member 2 -->
+                <div class="text-center group">
+                    <div class="w-24 h-24 mx-auto bg-gray-200 rounded-full mb-4 overflow-hidden shadow-md border-4 border-white group-hover:border-primary transition-colors">
+                        <img src="https://placehold.co/100x100/e2e8f0/64748b?text=AC" alt="Andrea" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-bold text-dark text-sm">Andrea Michelle Chavez Luna</h4>
+                </div>
+                <!-- Team Member 3 -->
+                <div class="text-center group">
+                    <div class="w-24 h-24 mx-auto bg-gray-200 rounded-full mb-4 overflow-hidden shadow-md border-4 border-white group-hover:border-primary transition-colors">
+                        <img src="https://placehold.co/100x100/e2e8f0/64748b?text=EL" alt="Erika" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-bold text-dark text-sm">Erika Goretti Leon Perez</h4>
+                </div>
+                <!-- Team Member 4 -->
+                <div class="text-center group">
+                    <div class="w-24 h-24 mx-auto bg-gray-200 rounded-full mb-4 overflow-hidden shadow-md border-4 border-white group-hover:border-primary transition-colors">
+                        <img src="https://placehold.co/100x100/e2e8f0/64748b?text=AM" alt="Ana" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-bold text-dark text-sm">Ana Moreno</h4>
+                </div>
+                <!-- Team Member 5 -->
+                <div class="text-center group">
+                    <div class="w-24 h-24 mx-auto bg-gray-200 rounded-full mb-4 overflow-hidden shadow-md border-4 border-white group-hover:border-primary transition-colors">
+                        <img src="https://placehold.co/100x100/e2e8f0/64748b?text=JG" alt="Jesús" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-bold text-dark text-sm">Jesús Guzmán</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white">
+                        <i class="fa-solid fa-droplet text-sm"></i>
+                    </div>
+                    <span class="font-bold text-xl tracking-tight">AquaGuard</span>
+                </div>
+                <div class="text-sm text-gray-400 text-center">
+                    <p>Proyecto para la materia / ODS #6 Agua Limpia y Saneamiento.</p>
+                    <p class="mt-1">&copy; 2026 Equipo 1. Todos los derechos reservados.</p>
+                </div>
+                <div class="flex gap-4 text-gray-400">
+                    <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-instagram text-xl"></i></a>
+                    <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-linkedin text-xl"></i></a>
+                    <a href="#" class="hover:text-white transition-colors"><i class="fa-solid fa-envelope text-xl"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
